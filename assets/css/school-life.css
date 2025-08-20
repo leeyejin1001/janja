@@ -1,0 +1,512 @@
+/* ========== 학교생활 페이지 전용 스타일 ========== */
+
+/* 갤러리 탭 스타일 */
+.gallery-tabs {
+    margin-bottom: 3em;
+}
+
+.gallery-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.gallery-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tab-btn {
+    transition: all 0.3s ease !important;
+    border: 2px solid var(--primary-color) !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+.tab-btn.active {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 186, 174, 0.3);
+}
+
+.tab-btn:hover {
+    background: var(--secondary-color) !important;
+    color: white !important;
+    border-color: var(--secondary-color) !important;
+}
+
+/* ========== 갤러리 이미지 스타일 ========== */
+.gallery .image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 2em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.gallery .image:hover {
+    box-shadow: 0 8px 25px rgba(46, 186, 174, 0.2);
+    transform: translateY(-3px);
+}
+
+.gallery .image img {
+    transition: transform 0.4s ease;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.gallery .image:hover img {
+    transform: scale(1.08);
+}
+
+/* ========== 이미지 오버레이 ========== */
+.gallery .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(46, 186, 174, 0.9) 0%, rgba(94, 179, 245, 0.9) 100%);
+    color: white;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5em;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.gallery .overlay h4 {
+    margin: 0 0 0.8em 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.gallery .overlay p {
+    margin: 0;
+    font-size: 0.95em;
+    opacity: 0.95;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ========== 업로드 섹션 ========== */
+.upload-section {
+    margin-top: 4em;
+    padding: 3em;
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.upload-section header h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+}
+
+.upload-section form {
+    margin-top: 2em;
+}
+
+.upload-section input[type="text"],
+.upload-section input[type="file"],
+.upload-section select,
+.upload-section textarea {
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+}
+
+.upload-section input[type="text"]:focus,
+.upload-section input[type="file"]:focus,
+.upload-section select:focus,
+.upload-section textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(46, 186, 174, 0.1);
+    outline: none;
+}
+
+.upload-section .button.primary {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 1em 2.5em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.upload-section .button.primary:hover {
+    background: var(--gradient-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 186, 174, 0.4);
+}
+
+/* ========== 시설 박스 스타일 ========== */
+.box.special {
+    padding: 2.5em 2em;
+    text-align: center;
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 2em;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.box.special:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 186, 174, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.box.special:hover:before {
+    left: 100%;
+}
+
+.box.special:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(46, 186, 174, 0.15);
+    border-color: var(--primary-color);
+}
+
+.box.special .icon.major {
+    margin-bottom: 1.5em;
+    position: relative;
+    z-index: 2;
+}
+
+.box.special h3 {
+    color: var(--text-dark);
+    margin-bottom: 1em;
+    position: relative;
+    z-index: 2;
+}
+
+.box.special p {
+    color: var(--text-light);
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+/* 시설별 색상 구분 */
+.box.special:nth-child(1) .icon.major {
+    color: var(--primary-color);
+}
+
+.box.special:nth-child(2) .icon.major {
+    color: var(--secondary-color);
+}
+
+.box.special:nth-child(3) .icon.major {
+    color: var(--accent-color);
+}
+
+.box.special:nth-child(4) .icon.major {
+    color: var(--primary-color);
+}
+
+/* ========== 학사일정 테이블 스타일 ========== */
+.table-wrapper {
+    margin: 3em 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+table.alt {
+    background: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table.alt thead {
+    background: var(--gradient-primary);
+}
+
+table.alt thead th {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1.5em 1em;
+    border: none;
+}
+
+table.alt tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border-light);
+}
+
+table.alt tbody tr:nth-child(odd) {
+    background: rgba(46, 186, 174, 0.03);
+}
+
+table.alt tbody tr:hover {
+    background: rgba(46, 186, 174, 0.08);
+    transform: scale(1.01);
+}
+
+table.alt tbody td {
+    padding: 1.2em 1em;
+    vertical-align: middle;
+}
+
+table.alt tbody td:first-child {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+table.alt tbody td:nth-child(2) {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+table.alt tbody td:last-child {
+    color: var(--text-light);
+    font-size: 0.95em;
+}
+
+/* ========== 정기활동 & 특별프로그램 섹션 ========== */
+.wrapper.style1 .inner > .row h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5em;
+    font-size: 1.3em;
+    position: relative;
+}
+
+.wrapper.style1 .inner > .row h3:after {
+    content: '';
+    position: absolute;
+    bottom: -0.5em;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.wrapper.style1 .inner > .row ul {
+    list-style: none;
+    padding: 0;
+}
+
+.wrapper.style1 .inner > .row ul li {
+    padding: 0.8em 0;
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.wrapper.style1 .inner > .row ul li:before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    color: var(--primary-color);
+    font-size: 0.8em;
+}
+
+.wrapper.style1 .inner > .row ul li:hover {
+    background: rgba(46, 186, 174, 0.05);
+    padding-left: 2em;
+}
+
+.wrapper.style1 .inner > .row ul li:last-child {
+    border-bottom: none;
+}
+
+.wrapper.style1 .inner > .row ul li strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ========== 반응형 디자인 ========== */
+@media screen and (max-width: 1280px) {
+    .gallery .image img {
+        height: 220px;
+    }
+    
+    .box.special {
+        padding: 2em 1.5em;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .gallery .image img {
+        height: 200px;
+    }
+    
+    .upload-section {
+        padding: 2.5em;
+    }
+    
+    .box.special {
+        margin-bottom: 1.5em;
+    }
+    
+    .tab-btn {
+        font-size: 0.9em;
+        padding: 0.7em 1.5em;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .gallery .col-4 {
+        width: 100% !important;
+    }
+    
+    .gallery .image {
+        margin-bottom: 1.5em;
+    }
+    
+    .gallery .image img {
+        height: 250px;
+    }
+    
+    .upload-section {
+        padding: 2em 1.5em;
+        margin-top: 2em;
+    }
+    
+    .box.special {
+        padding: 2em 1em;
+        margin-bottom: 1em;
+    }
+    
+    .tab-btn {
+        font-size: 0.8em;
+        padding: 0.6em 1.2em;
+        margin-bottom: 0.5em;
+    }
+    
+    .gallery-tabs .actions.fit li {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    
+    .table-wrapper {
+        overflow-x: auto;
+    }
+    
+    table.alt {
+        min-width: 600px;
+    }
+    
+    table.alt thead th,
+    table.alt tbody td {
+        padding: 1em 0.8em;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery .image img {
+        height: 200px;
+    }
+    
+    .upload-section {
+        padding: 1.5em 1em;
+    }
+    
+    .box.special {
+        padding: 1.5em 0.8em;
+    }
+    
+    .gallery .overlay {
+        padding: 1em;
+    }
+    
+    .gallery .overlay h4 {
+        font-size: 1em;
+    }
+    
+    .gallery .overlay p {
+        font-size: 0.85em;
+    }
+    
+    table.alt thead th,
+    table.alt tbody td {
+        padding: 0.8em 0.5em;
+        font-size: 0.8em;
+    }
+}
+
+/* ========== 특별 효과 ========== */
+.gallery .image {
+    position: relative;
+}
+
+.gallery .image:hover .overlay {
+    display: flex !important;
+    animation: overlaySlideUp 0.4s ease-out;
+}
+
+@keyframes overlaySlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 업로드 폼 성공/에러 메시지 스타일 */
+.upload-message {
+    padding: 1em 1.5em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    text-align: center;
+    font-weight: 500;
+}
+
+.upload-message.success {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.upload-message.error {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* 로딩 스피너 */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(46, 186, 174, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
