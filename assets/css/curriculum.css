@@ -1,0 +1,231 @@
+/* ========== 중고등교육과정 페이지 스타일 ========== */
+
+:root {
+    --primary-color: #2EBAAE;
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-white: #fff;
+    --bg-light: #f8f9fa;
+    --border-light: #e0e0e0;
+}
+
+/* 네비게이션 */
+.curriculum-nav {
+    margin-bottom: 3em;
+}
+
+.curriculum-nav .actions.fit li {
+    margin-bottom: 0.5em;
+}
+
+.curriculum-nav .button {
+    background: var(--bg-white);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.curriculum-nav .button:hover,
+.curriculum-nav .button.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 186, 174, 0.3);
+}
+
+/* 슬라이드 컨테이너 */
+.slide-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em 0;
+    overflow: hidden;
+}
+
+.slide-content {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1s ease-out;
+    will-change: transform, opacity;
+}
+
+.slide-content.slide-right {
+    transform: translateX(100px);
+}
+
+.slide-content.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-content img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.slide-content img:hover {
+    transform: scale(1.02);
+}
+
+/* 특색교육 프로그램 */
+.special-program {
+    margin-bottom: 4em;
+    padding: 2em 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.special-program:last-child {
+    border-bottom: none;
+}
+
+.special-program h3 {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* 섹션 헤더 */
+.major h2 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.major p {
+    color: var(--text-light);
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 1280px) {
+    .slide-content img {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .slide-container {
+        max-width: 100%;
+        padding: 1.5em 0;
+    }
+    
+    .slide-content img {
+        height: 300px;
+    }
+    
+    .special-program {
+        margin-bottom: 3em;
+        padding: 1.5em 0;
+    }
+    
+    .special-program h3 {
+        font-size: 1.3em;
+    }
+    
+    .major h2 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .curriculum-nav .actions.fit {
+        flex-direction: column;
+    }
+    
+    .curriculum-nav .actions.fit li {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    
+    .slide-content img {
+        height: 250px;
+    }
+    
+    .special-program h3 {
+        font-size: 1.2em;
+    }
+    
+    .major h2 {
+        font-size: 1.8em;
+    }
+    
+    .major p {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slide-content img {
+        height: 200px;
+    }
+    
+    .special-program {
+        margin-bottom: 2em;
+        padding: 1em 0;
+    }
+    
+    .special-program h3 {
+        font-size: 1.1em;
+        margin-bottom: 1em;
+    }
+    
+    .major h2 {
+        font-size: 1.5em;
+    }
+    
+    .slide-container {
+        padding: 1em 0;
+    }
+}
+
+/* 스크롤 애니메이션 준비 */
+.slide-content {
+    transition-delay: 0.1s;
+}
+
+/* 애니메이션 지연 효과 */
+.special-program:nth-child(1) .slide-content { transition-delay: 0.1s; }
+.special-program:nth-child(2) .slide-content { transition-delay: 0.2s; }
+.special-program:nth-child(3) .slide-content { transition-delay: 0.3s; }
+.special-program:nth-child(4) .slide-content { transition-delay: 0.4s; }
+.special-program:nth-child(5) .slide-content { transition-delay: 0.5s; }
+.special-program:nth-child(6) .slide-content { transition-delay: 0.6s; }
+.special-program:nth-child(7) .slide-content { transition-delay: 0.7s; }
+.special-program:nth-child(8) .slide-content { transition-delay: 0.8s; }
+.special-program:nth-child(9) .slide-content { transition-delay: 0.9s; }
+.special-program:nth-child(10) .slide-content { transition-delay: 1.0s; }
+
+/* 부드러운 페이드인 효과 */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.major {
+    animation: fadeInSlide 0.8s ease-out;
+}
+
+/* 네비게이션 버튼 활성화 스타일 */
+.curriculum-nav .button.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 186, 174, 0.4);
+}
