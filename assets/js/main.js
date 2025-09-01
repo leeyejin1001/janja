@@ -525,3 +525,208 @@ $(document).ready(function() {
 		$('head').append(dynamicStyles);
 	}
 });
+
+/* 영성, 지성, 인성 이미지 애니메이션 JavaScript */
+
+// main.js 파일에 다음 코드를 추가하세요
+
+(function($) {
+	
+	// Intersection Observer를 사용한 스크롤 애니메이션
+	function initSpotlightAnimations() {
+		// Intersection Observer 지원 확인
+		if (!window.IntersectionObserver) {
+			// 지원하지 않는 브라우저에서는 즉시 애니메이션 클래스 추가
+			$('.spotlight').addClass('animate');
+			return;
+		}
+
+		// Observer 옵션 설정
+		const observerOptions = {
+			threshold: 0.2, // 20%가 보이면 애니메이션 시작
+			rootMargin: '0px 0px -50px 0px' // 50px 여유를 두고 트리거
+		};
+
+		// Observer 생성
+		const spotlightObserver = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if (entry.isIntersecting) {
+					// 뷰포트에 들어오면 animate 클래스 추가
+					$(entry.target).addClass('animate');
+					
+					// 한 번 애니메이션이 실행되면 관찰 중지 (성능 최적화)
+					spotlightObserver.unobserve(entry.target);
+				}
+			});
+		}, observerOptions);
+
+		// 모든 spotlight 요소 관찰 시작
+		$('.spotlight').each(function() {
+			spotlightObserver.observe(this);
+		});
+	}
+
+	// 폴백: Intersection Observer 미지원 시 스크롤 이벤트 사용
+	function initFallbackAnimation() {
+		const $window = $(window);
+		const $spotlights = $('.spotlight');
+
+		function checkSpotlights() {
+			const windowTop = $window.scrollTop();
+			const windowHeight = $window.height();
+
+			$spotlights.each(function() {
+				const $spotlight = $(this);
+				
+				// 이미 애니메이션된 요소는 건너뛰기
+				if ($spotlight.hasClass('animate')) {
+					return;
+				}
+
+				const elementTop = $spotlight.offset().top;
+				const elementBottom = elementTop + $spotlight.outerHeight();
+
+				// 요소가 뷰포트에 들어오는지 확인
+				if (elementBottom > windowTop && elementTop < windowTop + windowHeight) {
+					$spotlight.addClass('animate');
+				}
+			});
+		}
+
+		// 스크롤 이벤트에 디바운스 적용
+		let scrollTimeout;
+		$window.on('scroll', function() {
+			if (scrollTimeout) {
+				clearTimeout(scrollTimeout);
+			}
+			scrollTimeout = setTimeout(checkSpotlights, 50);
+		});
+
+		// 초기 체크
+		checkSpotlights();
+	}
+
+	// 이미지 로드 완료 후 애니메이션 초기화
+	function waitForImages() {
+		const $spotlightImages = $('.spotlight .image img');
+		let loadedCount = 0;
+		const totalImages = $spotlightImages.length;
+
+		if (totalImages === 0) {
+			// 이미지가 없으면 즉시 초기화
+			initSpotlightAnimations();
+			return;
+		}
+
+		$spotlightImages.each(function() {
+			const img = new Image();
+			
+			img.onload = img.onerror = function() {
+				loadedCount++;
+				if (loadedCount >= totalImages) {
+					// 모든 이미지 로드 완료 후 애니메이션 초기화
+					setTimeout(initSpotlightAnimations, 100);
+				}
+			};
+			
+			img.src = this.src;
+		});
+
+		// 5초 후에도 로딩이 완료되지 않으면 강제 초기화
+		setTimeout(function() {
+			if (loadedCount < totalImages) {
+				initSpotlightAnimations();
+			}
+		}, 5000);
+	}
+
+	// 페이지 로드 시 초기화
+	$(document).ready(function() {
+		// CSS 스타일 동적 추가
+		if ($('#spotlight-animation-styles').length === 0) {
+			const animationStyles = `
+				<style id="spotlight-animation-styles">
+					.spotlight .image {
+						opacity: 0;
+						transform: translateX(-50px);
+						transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+					}
+					
+					.spotlight:nth-child(even) .image {
+						transform: translateX(50px);
+					}
+					
+					.spotlight.animate .image {
+						opacity: 1;
+						transform: translateX(0);
+					}
+					
+					.spotlight .content {
+						opacity: 0;
+						transform: translateY(30px);
+						transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+					}
+					
+					.spotlight.animate .content {
+						opacity: 1;
+						transform: translateY(0);
+					}
+					
+					.spotlight:nth-child(1).animate .image { transition-delay: 0.1s; }
+					.spotlight:nth-child(1).animate .content { transition-delay: 0.3s; }
+					.spotlight:nth-child(2).animate .image { transition-delay: 0.2s; }
+					.spotlight:nth-child(2).animate .content { transition-delay: 0.4s; }
+					.spotlight:nth-child(3).animate .image { transition-delay: 0.3s; }
+					.spotlight:nth-child(3).animate .content { transition-delay: 0.5s; }
+					
+					.spotlight .image img {
+						transition: transform 0.4s ease, filter 0.4s ease;
+						filter: brightness(0.9);
+					}
+					
+					.spotlight:hover .image img {
+						transform: scale(1.05);
+						filter: brightness(1);
+					}
+					
+					@media screen and (max-width: 980px) {
+						.spotlight .image,
+						.spotlight:nth-child(even) .image {
+							transform: translateY(30px);
+						}
+						
+						.spotlight.animate .image {
+							transform: translateY(0);
+						}
+					}
+					
+					@media (prefers-reduced-motion: reduce) {
+						.spotlight .image,
+						.spotlight .content,
+						.spotlight .image img {
+							transition: none !important;
+							transform: none !important;
+							animation: none !important;
+							opacity: 1 !important;
+						}
+					}
+				</style>
+			`;
+			
+			$('head').append(animationStyles);
+		}
+
+		// 이미지 로딩 완료를 기다린 후 애니메이션 초기화
+		waitForImages();
+	});
+
+	// 윈도우 로드 시에도 백업으로 초기화 (안전장치)
+	$(window).on('load', function() {
+		setTimeout(function() {
+			if ($('.spotlight.animate').length === 0) {
+				initSpotlightAnimations();
+			}
+		}, 500);
+	});
+
+})(jQuery);

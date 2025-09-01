@@ -1169,3 +1169,527 @@ body.is-mobile.landing .wrapper.style4 {
 	background: var(--primary-red);
 	color: white;
 }
+/* 영성, 지성, 인성 이미지 애니메이션 효과 */
+
+/* Spotlight 이미지 초기 상태 */
+.spotlight .image {
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.spotlight:nth-child(even) .image {
+	transform: translateX(50px);
+}
+
+/* 이미지가 뷰포트에 나타날 때의 애니메이션 */
+.spotlight.animate .image {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* 콘텐츠도 같이 애니메이션 */
+.spotlight .content {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.spotlight.animate .content {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* 각 spotlight별로 딜레이 적용 */
+.spotlight:nth-child(1).animate .image {
+	transition-delay: 0.1s;
+}
+
+.spotlight:nth-child(1).animate .content {
+	transition-delay: 0.3s;
+}
+
+.spotlight:nth-child(2).animate .image {
+	transition-delay: 0.2s;
+}
+
+.spotlight:nth-child(2).animate .content {
+	transition-delay: 0.4s;
+}
+
+.spotlight:nth-child(3).animate .image {
+	transition-delay: 0.3s;
+}
+
+.spotlight:nth-child(3).animate .content {
+	transition-delay: 0.5s;
+}
+
+/* 이미지 호버 효과 개선 */
+.spotlight .image img {
+	transition: transform 0.4s ease, filter 0.4s ease;
+	filter: brightness(0.9);
+}
+
+.spotlight:hover .image img {
+	transform: scale(1.05);
+	filter: brightness(1);
+}
+
+/* 부드러운 그라데이션 오버레이 */
+.spotlight .image::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	pointer-events: none;
+}
+
+.spotlight:hover .image::before {
+	opacity: 1;
+}
+
+/* 모바일에서 애니메이션 최적화 */
+@media screen and (max-width: 980px) {
+	.spotlight .image,
+	.spotlight:nth-child(even) .image {
+		transform: translateY(30px);
+	}
+	
+	.spotlight.animate .image {
+		transform: translateY(0);
+	}
+	
+	.spotlight .image::before {
+		display: none;
+	}
+}
+
+/* 접근성: 모션 민감성 사용자 대응 */
+@media (prefers-reduced-motion: reduce) {
+	.spotlight .image,
+	.spotlight .content,
+	.spotlight .image img {
+		transition: none !important;
+		transform: none !important;
+		animation: none !important;
+	}
+	
+	.spotlight .image {
+		opacity: 1;
+	}
+	
+	.spotlight .content {
+		opacity: 1;
+	}
+}
+/* 학교안내 features 섹션 크기 축소 - 모든 디바이스 안정화 */
+
+/* 전체 컨테이너 패딩 축소 */
+.wrapper.style3 {
+	padding: 4em 0 3em 0 !important;
+}
+
+/* Features 기본 설정 - flexbox 안정화 */
+.wrapper.style3 .features,
+.wrapper.style3 ul.features {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: stretch !important;
+	list-style: none !important;
+	padding: 0 !important;
+	width: 100% !important;
+	margin: 0 !important;
+}
+
+/* Features 리스트 아이템 크기 축소 - 데스크톱 */
+.wrapper.style3 .features li,
+.wrapper.style3 ul.features li {
+	display: flex !important;
+	flex-direction: column !important;
+	position: relative !important;
+	text-align: center !important;
+	width: 50% !important;
+	min-height: 320px !important;
+	padding: 2em 1.5em 1em 1.5em !important;
+	margin: 0 !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	box-sizing: border-box !important;
+	border: 1px solid #ffffff !important;
+}
+
+/* 아이콘 크기 축소 */
+.wrapper.style3 .features li:after,
+.wrapper.style3 ul.features li:after {
+	display: block !important;
+	position: static !important;
+	font-family: 'Font Awesome 5 Free' !important;
+	font-weight: 900 !important;
+	font-size: 2.2em !important;
+	color: var(--primary-red) !important;
+	margin: 0 0 1em 0 !important;
+	text-align: center !important;
+	width: 100% !important;
+	line-height: 1 !important;
+	flex-shrink: 0 !important;
+	order: -1 !important;
+}
+
+/* 제목 크기 및 여백 축소 */
+.wrapper.style3 .features li h3,
+.wrapper.style3 ul.features li h3 {
+	font-size: 1.1em !important;
+	margin: 0 0 1em 0 !important;
+	color: var(--text-primary) !important;
+	font-weight: 700 !important;
+	text-align: center !important;
+	width: 100% !important;
+	flex-shrink: 0 !important;
+	order: 1 !important;
+}
+
+/* 설명 텍스트 크기 및 여백 축소 */
+.wrapper.style3 .features li p,
+.wrapper.style3 ul.features li p {
+	font-size: 0.9em !important;
+	line-height: 1.5 !important;
+	margin: 0 0 1.5em 0 !important;
+	flex-grow: 1 !important;
+	text-align: center !important;
+	width: 100% !important;
+	color: var(--text-secondary) !important;
+	order: 2 !important;
+}
+
+/* 버튼 컨테이너 */
+.wrapper.style3 .features li ul.actions,
+.wrapper.style3 ul.features li ul.actions {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	flex-shrink: 0 !important;
+	width: 100% !important;
+	position: static !important;
+	order: 3 !important;
+}
+
+/* 버튼 크기 */
+.wrapper.style3 .features li .button.small,
+.wrapper.style3 ul.features li .button.small,
+.wrapper.style3 .features li .button,
+.wrapper.style3 ul.features li .button {
+	padding: 0.6em 2em !important;
+	font-size: 0.8em !important;
+	min-width: 120px !important;
+	margin: 0 !important;
+}
+
+/* 헤더 섹션 크기 축소 */
+.wrapper.style3 header.major {
+	margin: 0 0 2.5em 0 !important;
+}
+
+.wrapper.style3 header.major h2 {
+	font-size: 1.8em !important;
+}
+
+.wrapper.style3 header.major p {
+	font-size: 1em !important;
+}
+
+/* 컴팩트한 느낌을 위한 추가 조정 */
+.wrapper.style3 .inner {
+	max-width: 55em !important;
+}
+
+/* 호버 효과 축소 */
+.wrapper.style3 .features li:hover {
+	transform: translateY(-4px) !important;
+}
+
+/* ===== 반응형 미디어 쿼리 ===== */
+
+/* 큰 태블릿 (1280px 이하) */
+@media screen and (max-width: 1280px) {
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		width: 50% !important;
+		min-height: 300px !important;
+		padding: 1.8em 1.3em 1em 1.3em !important;
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 2em !important;
+	}
+}
+
+/* 태블릿 (980px 이하) */
+@media screen and (max-width: 980px) {
+	.wrapper.style3 {
+		padding: 3em 2em 2em 2em !important;
+	}
+	
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		width: 50% !important;
+		min-height: 280px !important;
+		padding: 1.5em 1em 1em 1em !important;
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 1.8em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li h3,
+	.wrapper.style3 ul.features li h3 {
+		font-size: 1em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li p,
+	.wrapper.style3 ul.features li p {
+		font-size: 0.85em !important;
+		margin: 0 0 1.2em 0 !important;
+	}
+	
+	.wrapper.style3 header.major {
+		margin: 0 0 2em 0 !important;
+	}
+	
+	.wrapper.style3 header.major h2 {
+		font-size: 1.6em !important;
+	}
+}
+
+/* 모바일 (736px 이하) - 1열 레이아웃 */
+@media screen and (max-width: 736px) {
+	.wrapper.style3 {
+		padding: 2.5em 1em 1.5em 1em !important;
+	}
+	
+	/* 1열로 변경 */
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		width: 100% !important;
+		min-height: auto !important;
+		padding: 1.5em 1em !important;
+		margin-bottom: 0 !important;
+		border-left: none !important;
+		border-right: none !important;
+		border-bottom: none !important;
+		border-top: solid 2px var(--border-color) !important;
+		background-color: var(--dark-card) !important;
+	}
+	
+	/* 첫 번째 카드는 위 테두리 없음 */
+	.wrapper.style3 .features li:first-child {
+		border-top: 0 !important;
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 1.6em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li h3,
+	.wrapper.style3 ul.features li h3 {
+		font-size: 0.95em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li p,
+	.wrapper.style3 ul.features li p {
+		font-size: 0.8em !important;
+		margin: 0 0 1em 0 !important;
+	}
+	
+	.wrapper.style3 .features li .button.small,
+	.wrapper.style3 ul.features li .button.small,
+	.wrapper.style3 .features li .button,
+	.wrapper.style3 ul.features li .button {
+		padding: 0.5em 1.5em !important;
+		font-size: 0.75em !important;
+		min-width: 100px !important;
+	}
+	
+	.wrapper.style3 header.major {
+		margin: 0 0 1.5em 0 !important;
+	}
+	
+	.wrapper.style3 header.major h2 {
+		font-size: 1.4em !important;
+	}
+	
+	.wrapper.style3 header.major p {
+		font-size: 0.9em !important;
+	}
+}
+
+/* 작은 모바일 (480px 이하) */
+@media screen and (max-width: 480px) {
+	.wrapper.style3 {
+		padding: 2em 0.5em 1em 0.5em !important;
+	}
+	
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		padding: 1.2em 0.8em !important;
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 1.4em !important;
+	}
+	
+	.wrapper.style3 .features li h3,
+	.wrapper.style3 ul.features li h3 {
+		font-size: 0.9em !important;
+	}
+	
+	.wrapper.style3 .features li p,
+	.wrapper.style3 ul.features li p {
+		font-size: 0.75em !important;
+	}
+	
+	.wrapper.style3 header.major h2 {
+		font-size: 1.2em !important;
+	}
+}
+
+/* 레이아웃 안정성을 위한 추가 규칙 */
+.wrapper.style3 .features li * {
+	box-sizing: border-box !important;
+}
+
+/* flexbox 폴백 */
+.wrapper.style3 .features {
+	overflow: hidden !important;
+}
+
+/* 카드 간 일관된 높이 유지 (데스크톱) */
+@media screen and (min-width: 737px) {
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+}
+
+/* 태블릿에서 크기 조정 */
+@media screen and (max-width: 980px) {
+	.wrapper.style3 {
+		padding: 3em 0 2em 0 !important;
+	}
+	
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		width: 50% !important;
+		padding: 2em 1.5em 3.5em 1.5em !important;
+		min-height: 300px !important; /* 태블릿에서 더 축소 */
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 2em !important;
+	}
+	
+	.wrapper.style3 header.major {
+		margin: 0 0 2em 0 !important;
+	}
+}
+
+/* 모바일에서 크기 조정 */
+@media screen and (max-width: 736px) {
+	.wrapper.style3 {
+		padding: 2.5em 0 1.5em 0 !important;
+	}
+	
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		width: 100% !important;
+		padding: 1.5em 1.5em 1.5em 1.5em !important;
+		min-height: auto !important;
+	}
+	
+	.wrapper.style3 .features li ul.actions {
+		position: static !important;
+		margin-top: 1em !important;
+		bottom: auto !important;
+	}
+	
+	.wrapper.style3 .features li:after,
+	.wrapper.style3 ul.features li:after {
+		font-size: 1.8em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li h3,
+	.wrapper.style3 ul.features li h3 {
+		font-size: 1em !important;
+		margin: 0 0 0.8em 0 !important;
+	}
+	
+	.wrapper.style3 .features li p,
+	.wrapper.style3 ul.features li p {
+		font-size: 0.85em !important;
+		margin: 0 0 1em 0 !important;
+	}
+	
+	.wrapper.style3 header.major {
+		margin: 0 0 1.5em 0 !important;
+	}
+	
+	.wrapper.style3 header.major h2 {
+		font-size: 1.4em !important;
+	}
+}
+
+/* 매우 작은 화면에서 추가 조정 */
+@media screen and (max-width: 480px) {
+	.wrapper.style3 {
+		padding: 2em 0 1em 0 !important;
+	}
+	
+	.wrapper.style3 .features li,
+	.wrapper.style3 ul.features li {
+		padding: 1.2em 1em 1.2em 1em !important;
+	}
+	
+	.wrapper.style3 .features li .button.small,
+	.wrapper.style3 ul.features li .button.small,
+	.wrapper.style3 .features li .button,
+	.wrapper.style3 ul.features li .button {
+		padding: 0.5em 1.5em !important;
+		font-size: 0.75em !important;
+		min-width: 100px !important;
+	}
+}
+
+/* 컴팩트한 느낌을 위한 추가 조정 */
+.wrapper.style3 .inner {
+	max-width: 55em !important; /* 기존보다 약간 좁게 */
+}
+
+/* 카드 간격 조정 */
+.wrapper.style3 .features li {
+	margin-bottom: 0 !important;
+}
+
+/* 전체적으로 더 타이트한 레이아웃 */
+.wrapper.style3 .features li:hover {
+	transform: translateY(-4px) !important; /* 기존 -8px에서 줄임 */
+}
