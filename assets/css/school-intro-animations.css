@@ -1,10 +1,13 @@
 /* ========== 장자기독학교 학교소개 페이지 교차 애니메이션 ========== */
 
-/* 기본 spotlight 설정 */
+/* 기본 spotlight 설정 - 높은 우선순위 */
 .spotlight {
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 2rem;
+    overflow: hidden !important;
+    position: relative !important;
+    margin-bottom: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 400px !important;
 }
 
 /* 첫 번째 패턴: 왼쪽에서 오는 이미지 (홀수 순서 섹션) */
