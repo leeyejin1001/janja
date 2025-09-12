@@ -8,16 +8,12 @@ Based on Spectral by HTML5 UP
 <title>후원안내 - 장자기독학교</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<meta name="description" content="장자기독학교 후원안내 - 후원내역 게시판" />
+<meta name="description" content="장자기독학교 후원안내" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="assets/css/jangja-custom.css" />
-<link rel="stylesheet" href="assets/css/support.css" />
 <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 <body class="is-preload">
-
-<!-- Skip to main content link for accessibility -->
-<a href="#main" class="skip-link">메인 콘텐츠로 바로가기</a>
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
@@ -53,115 +49,14 @@ Based on Spectral by HTML5 UP
 		장자기독학교와 함께해주세요</p>
 	</header>
 
-	<!-- Sub Navigation -->
-	<section class="sub-nav wrapper style5">
+	<!-- Support Image Section -->
+	<section class="wrapper style1">
 		<div class="inner">
-			<ul class="actions fit">
-				<li><a href="#support-guide" class="button scrolly active" role="button" aria-label="후원안내 섹션으로 이동">후원안내</a></li>
-				<li><a href="#support-history" class="button scrolly" role="button" aria-label="후원내역 섹션으로 이동">후원내역</a></li>
-			</ul>
-		</div>
-	</section>
-
-	<!-- Support Guide Section -->
-	<section id="support-guide" class="wrapper style1">
-		<div class="inner">
-			<div class="content-section">
-				<h3>후원안내</h3>
-				<div class="placeholder">
-					<h4>후원 안내 정보</h4>
-					<p>장자기독학교 후원 방법, 후원 계좌, 후원금 사용 내역 등<br />
-					후원 관련 안내 정보가 표시될 예정입니다.</p>
-				</div>
+			<div class="support-image-container" style="text-align: center; padding: 2rem 0;">
+				<img src="images/후원안내.png" alt="장자기독학교 후원안내" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" />
 			</div>
 		</div>
 	</section>
-
-	<!-- Support History Section -->
-	<section id="support-history" class="wrapper style3">
-		<div class="inner">
-			<div class="content-section">
-				<h3>후원내역</h3>
-				
-				<!-- 게시판 헤더 -->
-				<div class="board-header">
-					<div class="board-info">
-						<span class="post-count">총 <strong>0</strong>건의 후원내역이 있습니다.</span>
-					</div>
-					<div class="board-actions">
-						<button class="button small primary" id="write-btn">글쓰기</button>
-					</div>
-				</div>
-				
-				<!-- 게시판 테이블 -->
-				<div class="board-table-wrapper">
-					<table class="board-table">
-						<thead>
-							<tr>
-								<th class="col-number">번호</th>
-								<th class="col-title">제목</th>
-								<th class="col-author">작성자</th>
-								<th class="col-date">작성일</th>
-								<th class="col-views">조회수</th>
-							</tr>
-						</thead>
-						<tbody id="board-tbody">
-							<tr class="no-posts">
-								<td colspan="5" class="text-center">
-									<div class="no-posts-message">
-										<p>아직 등록된 후원내역이 없습니다.</p>
-										<p>첫 번째 후원내역을 작성해보세요!</p>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				<!-- 페이지네이션 -->
-				<div class="pagination">
-					<ul class="pagination-list">
-						<li><a href="#" class="page-btn disabled" data-page="prev">&laquo; 이전</a></li>
-						<li><a href="#" class="page-btn active" data-page="1">1</a></li>
-						<li><a href="#" class="page-btn disabled" data-page="next">다음 &raquo;</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- 글쓰기 모달 -->
-	<div id="write-modal" class="modal" style="display: none;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3>후원내역 작성</h3>
-				<button class="modal-close" aria-label="모달 닫기">&times;</button>
-			</div>
-			<div class="modal-body">
-				<form id="write-form" class="write-form">
-					<div class="form-group">
-						<label for="post-title">제목 <span class="required">*</span></label>
-						<input type="text" id="post-title" name="title" required placeholder="후원내역 제목을 입력하세요">
-					</div>
-					
-					<div class="form-group">
-						<label for="post-author">작성자 <span class="required">*</span></label>
-						<input type="text" id="post-author" name="author" required placeholder="작성자 이름을 입력하세요">
-					</div>
-					
-					<div class="form-group">
-						<label for="post-content">내용 <span class="required">*</span></label>
-						<textarea id="post-content" name="content" rows="10" required placeholder="후원에 대한 감사 인사나 후원 내역을 작성해주세요"></textarea>
-					</div>
-					
-					<div class="form-actions">
-						<button type="button" class="button" id="cancel-btn">취소</button>
-						<button type="submit" class="button primary">등록</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 
 	<!-- Contact Section -->
 	<section id="contact" class="wrapper style4">
@@ -205,7 +100,6 @@ Based on Spectral by HTML5 UP
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/support.js"></script>
 
 </body>
 </html>

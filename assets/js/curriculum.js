@@ -2,19 +2,24 @@
 
 $(document).ready(function() {
     
-    // ========== 부드러운 스크롤 네비게이션 ==========
-    $('a[href^="#"]').click(function(e) {
+    // ========== 부드러운 스크롤 네비게이션 (수정됨) ==========
+    $('.curriculum-nav a[href^="#"]').on('click', function(e) {
         e.preventDefault();
-        var target = $(this.hash);
+        e.stopPropagation();
+        
+        var targetId = $(this).attr('href');
+        var target = $(targetId);
+        
         if (target.length) {
-            // 네비게이션 버튼 활성화
+            // 모든 네비게이션 버튼에서 active 클래스 제거
             $('.curriculum-nav .button').removeClass('active');
+            // 클릭된 버튼에 active 클래스 추가
             $(this).addClass('active');
             
-            // 부드러운 스크롤
-            $('html, body').animate({
-                scrollTop: target.offset().top - 100
-            }, 1000, 'easeInOutCubic');
+            // 부드러운 스크롤 실행
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top - 120
+            }, 1000, 'easeInOutQuart');
         }
     });
     
@@ -67,10 +72,11 @@ $(document).ready(function() {
         programObserver.observe(this);
     });
     
-    // ========== 스크롤 기반 네비게이션 활성화 ==========
+    // ========== 스크롤 기반 네비게이션 활성화 (수정됨) ==========
     let isScrolling = false;
+    let scrollTimeout;
     
-    $(window).scroll(function() {
+    $(window).on('scroll', function() {
         if (!isScrolling) {
             window.requestAnimationFrame(function() {
                 updateActiveNavigation();
@@ -82,17 +88,18 @@ $(document).ready(function() {
     
     function updateActiveNavigation() {
         const scrollPos = $(window).scrollTop() + 200;
+        let activeSet = false;
         
-        $('.curriculum-nav .button').each(function() {
-            const target = $($(this).attr('href'));
-            if (target.length) {
-                const targetTop = target.offset().top;
-                const targetBottom = targetTop + target.outerHeight();
-                
-                if (scrollPos >= targetTop && scrollPos < targetBottom) {
-                    $('.curriculum-nav .button').removeClass('active');
-                    $(this).addClass('active');
-                }
+        // 각 섹션을 확인하여 현재 보이는 섹션 찾기
+        $('#jangja-education, #special-education, #subject-education, #extracurricular').each(function() {
+            const $section = $(this);
+            const sectionTop = $section.offset().top;
+            const sectionBottom = sectionTop + $section.outerHeight();
+            
+            if (scrollPos >= sectionTop - 50 && scrollPos < sectionBottom && !activeSet) {
+                $('.curriculum-nav .button').removeClass('active');
+                $('a[href="#' + $section.attr('id') + '"]').addClass('active');
+                activeSet = true;
             }
         });
     }
@@ -217,6 +224,9 @@ $(document).ready(function() {
                 $(firstSlide).addClass('slide-in');
             }
         }, 800);
+        
+        // 초기 네비게이션 상태 설정
+        setTimeout(updateActiveNavigation, 1000);
     }
     
     // ========== 유틸리티 함수들 ==========
@@ -300,14 +310,6 @@ $(document).ready(function() {
         }
     });
     
-    // ========== 성능 모니터링 ==========
-    function logPerformance() {
-        if (window.performance && window.performance.timing) {
-            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-            console.log(`페이지 로드 시간: ${loadTime}ms`);
-        }
-    }
-    
     // ========== 접근성 개선 ==========
     function enhanceAccessibility() {
         // 포커스 가능한 요소들에 키보드 네비게이션 추가
@@ -334,15 +336,12 @@ $(document).ready(function() {
         createDynamicGradient();
         createScrollProgress();
         enhanceAccessibility();
-        updateActiveNavigation();
-        logPerformance();
     }, 100);
     
     // ========== 커스텀 easing 함수 등록 ==========
     $.extend($.easing, {
-        easeInOutCubic: function (x, t, b, c, d) {
-            if ((t/=d/2) < 1) return c/2*t*t*t + b;
-            return c/2*((t-=2)*t*t + 2) + b;
+        easeInOutQuart: function (x) {
+            return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
         }
     });
     
@@ -352,11 +351,6 @@ $(document).ready(function() {
 // ========== 페이지 언로드 시 정리 ==========
 $(window).on('beforeunload', function() {
     // 이벤트 리스너 정리
-    $(document).off();
-    $(window).off('scroll resize');
-    
-    // 타이머 정리
-    if (window.requestAnimationFrame) {
-        cancelAnimationFrame();
-    }
+    $('.curriculum-nav a').off('click');
+    $(window).off('scroll.curriculum resize.curriculum');
 });

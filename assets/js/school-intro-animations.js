@@ -1,15 +1,4 @@
-// Intersection Observer가 지원되지 않는 경우 모든 애니메이션을 즉시 활성화
-        if (!window.IntersectionObserver) {
-            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #school-motto, #education-philosophy, #establishment, #milestone, #education-staff, #admin-staff, #counseling-staff');
-            sections.forEach(function(section) {
-                section.classList.add('animate');
-                var spotlight = section.querySelector('.spotlight');
-                if (spotlight) {
-                    spotlight.classList.add('animate');
-                }
-            });
-            return;
-        }/**
+/**
  * 장자기독학교 학교소개 페이지 스크롤 애니메이션
  * 스크롤 시 각 섹션이 교차로 애니메이션되도록 구현
  */
@@ -23,7 +12,7 @@
     function initScrollAnimations() {
         // Intersection Observer가 지원되지 않는 경우 모든 애니메이션을 즉시 활성화
         if (!window.IntersectionObserver) {
-            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #symbol, #history, #staff');
+            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #education-philosophy, #milestone, #staff');
             sections.forEach(function(section) {
                 section.classList.add('animate');
                 var spotlight = section.querySelector('.spotlight');
@@ -61,7 +50,7 @@
         var observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // spotlight 섹션들 관찰 시작
-        var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #symbol, #history, #staff');
+        var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #education-philosophy, #milestone, #staff');
         sections.forEach(function(section) {
             observer.observe(section);
         });
@@ -105,7 +94,7 @@
      * 페이지 로드 시 이미 보이는 요소들 처리
      */
     function handleInitiallyVisibleElements() {
-        var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #symbol, #history, #staff');
+        var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #education-philosophy, #milestone, #staff');
         
         sections.forEach(function(section, index) {
             var rect = section.getBoundingClientRect();
@@ -130,7 +119,7 @@
     function optimizeAnimations() {
         // 사용자가 모션 감소를 선호하는 경우
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #symbol, #history, #staff');
+            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #education-philosophy, #milestone, #staff');
             sections.forEach(function(section) {
                 section.classList.add('animate');
                 var spotlight = section.querySelector('.spotlight');
@@ -155,7 +144,7 @@
      */
     function debugSectionStatus() {
         if (window.console && window.console.log) {
-            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #school-motto, #education-philosophy, #establishment, #milestone, #staff');
+            var sections = document.querySelectorAll('#jangjahak, #vision, #chairman, #principal, #elder, #education-philosophy, #milestone, #staff');
             console.log('장자기독학교 애니메이션 섹션 수:', sections.length);
             sections.forEach(function(section, index) {
                 var hasSpotlight = section.querySelector('.spotlight') !== null;
