@@ -258,6 +258,7 @@ h1, h2, h3, h4, h5, h6 {
 	gap: 0.5rem;
 	margin-bottom: 2rem;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .qna-tab {
@@ -271,6 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 	transition: all 0.3s ease !important;
 	cursor: pointer;
 	text-decoration: none;
+	text-align: center;
 }
 
 .qna-tab:hover {
@@ -293,6 +295,144 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 12px;
 	padding: 2.5rem;
 	min-height: 300px;
+}
+
+/* ========== QNA ITEMS ========== */
+.qna-item {
+	background: var(--dark-card);
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	margin-bottom: 1rem;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	transition: all 0.3s ease;
+}
+
+.qna-item:hover {
+	border-color: rgba(220, 38, 38, 0.3);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.qna-question {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.qna-question:hover {
+	background: rgba(220, 38, 38, 0.05);
+}
+
+.qna-question h4 {
+	color: var(--text-primary);
+	margin: 0;
+	font-size: 1.1em;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.qna-question i.fas.fa-question-circle {
+	color: var(--primary-red);
+	font-size: 1.2em;
+}
+
+.qna-toggle {
+	background: none;
+	border: none;
+	color: var(--text-secondary);
+	font-size: 1.2em;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	padding: 0.5rem;
+	border-radius: 50%;
+}
+
+.qna-toggle:hover {
+	background: rgba(220, 38, 38, 0.1);
+	color: var(--primary-red);
+}
+
+.qna-toggle i {
+	transition: transform 0.3s ease;
+}
+
+.qna-item.active .qna-toggle i {
+	transform: rotate(180deg);
+}
+
+/* ========== QNA ANSWERS ========== */
+.qna-answer {
+	display: none;
+	padding: 0 1.5rem 1.5rem;
+	border-top: 1px solid var(--border-color);
+}
+
+.qna-item.active .qna-answer {
+	display: block;
+	animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.answer-content {
+	padding: 1rem 0;
+}
+
+.answer-content h5 {
+	color: var(--text-primary);
+	font-size: 1em;
+	font-weight: 600;
+	margin: 1.5rem 0 0.8rem 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.answer-content h5:first-child {
+	margin-top: 0;
+}
+
+.answer-content h5 i {
+	color: var(--primary-blue);
+}
+
+.answer-content p {
+	color: var(--text-secondary);
+	line-height: 1.6;
+	margin: 0.8rem 0;
+}
+
+/* ========== CONTACT NOTE ========== */
+.contact-note {
+	margin-top: 1.5rem;
+	padding: 1rem;
+	background: var(--dark-surface);
+	border-radius: 6px;
+	text-align: center;
+}
+
+.contact-note p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 0.9em;
+}
+
+.contact-note i {
+	color: var(--primary-red);
+	margin-right: 0.5rem;
 }
 
 /* ========== BUTTON STYLES ========== */
@@ -386,9 +526,7 @@ h1, h2, h3, h4, h5, h6 {
 	#main > header p {
 		font-size: 1.1em;
 	}
-}
-
-@media screen and (max-width: 736px) {
+	
 	.qna-tabs {
 		flex-direction: column;
 		align-items: center;
@@ -396,10 +534,17 @@ h1, h2, h3, h4, h5, h6 {
 	
 	.qna-tab {
 		width: 100%;
+		max-width: 300px;
 		text-align: center;
 		margin-bottom: 0.5rem;
 	}
 	
+	.qna-content {
+		padding: 2rem;
+	}
+}
+
+@media screen and (max-width: 736px) {
 	.content-section {
 		padding: 1.5rem;
 	}
@@ -415,6 +560,21 @@ h1, h2, h3, h4, h5, h6 {
 	#main > header p {
 		font-size: 1em;
 	}
+	
+	.qna-question {
+		padding: 1rem;
+		flex-direction: column;
+		gap: 1rem;
+		text-align: center;
+	}
+	
+	.qna-question h4 {
+		font-size: 1em;
+	}
+	
+	.qna-answer {
+		padding: 0 1rem 1rem;
+	}
 }
 
 @media screen and (max-width: 480px) {
@@ -428,6 +588,19 @@ h1, h2, h3, h4, h5, h6 {
 	
 	#main > header {
 		padding: 4em 2em 2em 2em;
+	}
+	
+	.qna-question {
+		padding: 0.8rem;
+	}
+	
+	.qna-question h4 {
+		font-size: 0.9em;
+		line-height: 1.4;
+	}
+	
+	.qna-answer {
+		padding: 0 0.8rem 0.8rem;
 	}
 }
 
@@ -479,4 +652,34 @@ h1, h2, h3, h4, h5, h6 {
 ::-moz-selection {
 	background: var(--primary-red);
 	color: white;
+}
+
+/* ========== 접근성 개선 ========== */
+.qna-tab:focus,
+.qna-toggle:focus {
+	outline: 2px solid var(--primary-blue);
+	outline-offset: 2px;
+}
+
+/* 애니메이션 비활성화 옵션 */
+@media (prefers-reduced-motion: reduce) {
+	.qna-tab,
+	.qna-toggle,
+	.qna-item {
+		transition: none;
+	}
+	
+	.qna-toggle i {
+		transition: none;
+	}
+	
+	@keyframes slideDown {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+	
+	@keyframes fadeInUp {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
 }
